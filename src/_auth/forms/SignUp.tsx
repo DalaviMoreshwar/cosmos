@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { signUpValidationSchema } from "@/lib/validation";
 import { z } from "zod";
-import { Orbit } from "lucide-react";
+import { CircleSlash2 } from "lucide-react";
 import Spin from "@/components/ui/shared/Spin";
 
 const SignUp = () => {
@@ -41,17 +41,24 @@ const SignUp = () => {
     <Form {...form}>
       <div className="sm:w-420">
         <div className="text-center">
-          <div className="flex flex-center">
-            <Orbit size={28} strokeWidth={3} className="text-cyan-400" />
-            <span className="font-bold ml-2 h1-bold mb-0 text-slate-300">
+          <div className="flex flex-center mb-2">
+            <CircleSlash2 size={28} strokeWidth={3} className="text-cyan-500" />
+            {/* <span className="font-bold ml-2 h1-bold mb-0 text-slate-300">
               Cosmos
-            </span>
+            </span> */}
+            <img
+              src="/assets/images/cosmos-logo-white.png"
+              alt="logo"
+              width="40%"
+              className="ml-6"
+            />
           </div>
-          <p className="text-light-3 mb-1 small-medium md:base-regular">
+          <h3 className="h3-bold md:h2-bold sm:pt-4">Create a new account</h3>
+          <p className="text-light-3  small-medium md:base-regular">
             Short and global, suggests a vast network.
           </p>
-          <h3 className="h3-bold md:h2-bold sm:pt-6">Create a new account</h3>
         </div>
+
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col gap-5 w-full mt-1"
