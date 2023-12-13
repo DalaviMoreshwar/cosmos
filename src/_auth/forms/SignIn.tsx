@@ -45,6 +45,7 @@ const SignIn = () => {
 
     if (!session) {
       return toast({
+        variant: "destructive",
         title: "Sign In Failed, please try again.",
         description: "Error user sign in.",
       });
@@ -56,6 +57,7 @@ const SignIn = () => {
       navigate("/");
     } else {
       return toast({
+        variant: "destructive",
         title: "Sign up Failed, please try again.",
         description: "Error user sign up.",
       });

@@ -52,6 +52,7 @@ const SignUp = () => {
 
     if (!newUser) {
       return toast({
+        variant: "destructive",
         title: "Sign Up Failed, please try again.",
         description: "Error creating user.",
       });
@@ -64,6 +65,7 @@ const SignUp = () => {
 
     if (!session) {
       return toast({
+        variant: "destructive",
         title: "Sign In Failed, please try again.",
         description: "Error user sign in.",
       });
@@ -75,6 +77,7 @@ const SignUp = () => {
       navigate("/");
     } else {
       return toast({
+        variant: "destructive",
         title: "Sign up Failed, please try again.",
         description: "Error user sign up.",
       });
