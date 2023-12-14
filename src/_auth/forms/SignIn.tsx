@@ -25,7 +25,8 @@ const SignIn = () => {
 
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
 
-  const { mutateAsync: signInAccount } = useSignInAccount();
+  const { mutateAsync: signInAccount, isPending: isSigningIn } =
+    useSignInAccount();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof signInValidationSchema>>({
@@ -117,7 +118,7 @@ const SignIn = () => {
             )}
           />
           <Button type="submit" className="shad-button_primary">
-            {isUserLoading ? (
+            {isUserLoading || isSigningIn ? (
               <div className="flex-center gap-2">
                 <Spin />
                 Loading...
