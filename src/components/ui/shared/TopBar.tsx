@@ -3,7 +3,7 @@ import { Button } from "../button";
 import { useSignOutAccount } from "@/lib/react-query/queriesAndMutations";
 import { useEffect } from "react";
 import { useUserContext } from "@/context/AuthContext";
-import { LogOut } from "lucide-react";
+import { CircleSlash2, LogOut } from "lucide-react";
 
 const TopBar = () => {
   const navigate = useNavigate();
@@ -18,6 +18,11 @@ const TopBar = () => {
     <section className="topbar">
       <div className="flex-between py-4 px-5">
         <Link className="flex gap-3 items-center" to="/">
+          <CircleSlash2
+            size={28}
+            strokeWidth={3}
+            className="text-primary-500"
+          />
           <img
             src="/assets/images/cosmos-logo-white.png"
             alt="logo"
