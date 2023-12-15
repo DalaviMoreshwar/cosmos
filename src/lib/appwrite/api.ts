@@ -96,19 +96,20 @@ export async function createPost(post: INewPost) {
   try {
     // Upload file to appwrite storage
     const uploadedFile = await uploadFile(post.file[0]);
-    if (!uploadFile) throw Error;
+
+    if (!uploadedFile) throw Error;
 
     // Get file url
     const fileUrl = getFilePreview(uploadedFile.$id);
     if (!fileUrl) {
-      deleteFile(uploadedFile.$id);
+      await deleteFile(uploadedFile.$id);
       throw Error;
     }
 
-    // convert tags into an array
+    // Convert tags into array
     const tags = post.tags?.replace(/ /g, "").split(",") || [];
 
-    // save to post to database
+    // Create post
     const newPost = await databases.createDocument(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
@@ -122,10 +123,13 @@ export async function createPost(post: INewPost) {
         tags: tags,
       }
     );
+
     if (!newPost) {
       await deleteFile(uploadedFile.$id);
       throw Error;
     }
+
+    return newPost;
   } catch (error) {
     console.log(error);
   }
