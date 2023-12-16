@@ -139,7 +139,7 @@ const PostForm = ({ post }: PostFromProps) => {
           )}
         />
         <div className="flex gap-4 itmes-center justify-end">
-          <Button type="button" className="shad-button_dark_4">
+          <Button type="button" className="shad-button_dark_4" disabled={isLoadingCreate}>
             Cancel
           </Button>
           <Button

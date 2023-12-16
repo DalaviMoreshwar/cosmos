@@ -1,9 +1,9 @@
 import { useUserContext } from "@/context/AuthContext";
-import { formatDateString, multiFormatDateString } from "@/lib/utils";
+import { multiFormatDateString } from "@/lib/utils";
 import { Models } from "appwrite";
 import { FileEdit } from "lucide-react";
-import React from "react";
 import { Link } from "react-router-dom";
+import PostStats from "./PostStats";
 
 type PostCardProps = {
   post: Models.Document;
@@ -51,7 +51,8 @@ const PostCard = ({ post }: PostCardProps) => {
         </Link>
       </div>
       <Link to={`/post/${post.$id}`}>
-        <div className="small-medium lg:base-medium py-5">
+        <img src={post.imageUrl} alt="post" className="post-card_img mt-4" />
+        <div className="small-medium lg:base-medium py-3">
           <p>{post.caption}</p>
           <ul className="flex gap-1 mt-2">
             {post.tags.map((tag: string) => (
@@ -61,8 +62,9 @@ const PostCard = ({ post }: PostCardProps) => {
             ))}
           </ul>
         </div>
-        <img src={post.imageUrl} alt="post" className="post-card_img" />
       </Link>
+
+      <PostStats post={post} userId={user.id} />
     </div>
   );
 };
