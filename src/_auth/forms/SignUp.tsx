@@ -162,11 +162,14 @@ const SignUp = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
+          <Button
+            type="submit"
+            className="shad-button_primary"
+            disabled={isCreatingUser}
+          >
             {isCreatingUser ? (
               <div className="flex-center gap-2">
                 <Spin />
-                Loading...
               </div>
             ) : (
               "Sign Up"

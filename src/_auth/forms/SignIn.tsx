@@ -117,11 +117,14 @@ const SignIn = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
+          <Button
+            type="submit"
+            className="shad-button_primary"
+            disabled={isSigningIn}
+          >
             {isUserLoading || isSigningIn ? (
               <div className="flex-center gap-2">
                 <Spin />
-                Loading...
               </div>
             ) : (
               "Sign In"
