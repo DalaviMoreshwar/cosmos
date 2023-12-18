@@ -47,7 +47,7 @@ const PostCard = ({ post }: PostCardProps) => {
           to={`/update-post/${post.$id}`}
           className={`${user.id !== post.creator.$id && "hidden"}`}
         >
-          <FileEdit className="text-primary-500" size={20} />
+          <FileEdit className="text-primary-500" size={25} />
         </Link>
       </div>
       <Link to={`/post/${post.$id}`}>
