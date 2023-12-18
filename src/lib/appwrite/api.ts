@@ -187,7 +187,7 @@ export async function getRecentPosts() {
   return posts;
 }
 
-// like a post functionality
+// like to post functionality
 export async function likePost(postId: string, likesArray: string[]) {
   try {
     const updatedPost = await databases.updateDocument(
@@ -195,7 +195,7 @@ export async function likePost(postId: string, likesArray: string[]) {
       appwriteConfig.postCollectionId,
       postId,
       {
-        like: likesArray,
+        likes: likesArray,
       }
     );
 

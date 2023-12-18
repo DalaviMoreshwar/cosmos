@@ -7,6 +7,7 @@ import {
 } from "@/lib/react-query/queriesAndMutations";
 import { Models } from "appwrite";
 import { checkIsLiked } from "@/lib/utils";
+import { Loader } from "lucide-react";
 
 type PostStatsProps = {
   post: Models.Document;
@@ -16,17 +17,17 @@ type PostStatsProps = {
 const PostStats = ({ post, userId }: PostStatsProps) => {
   const likesList = post.likes.map((user: Models.Document) => user.$id);
 
-  const [likes, setLikes] = useState(likesList);
+  const [likes, setLikes] = useState<string[]>(likesList);
   const [isSaved, setIsSaved] = useState(false);
 
   const { mutate: likePost } = useLikepost();
-  const { mutate: savePost } = useSavepost();
-  const { mutate: deleteSavedPost } = useDeleteSavedpost();
-
+  const { mutate: savePost, isPending: isSavingPost } = useSavepost();
+  const { mutate: deleteSavedPost, isPending: isDeletingSavedPost } =
+    useDeleteSavedpost();
   const { data: currentUser } = useGetCurrentUser();
 
   const savedPostRecord = currentUser?.save.find(
-    (record: Models.Document) => record.id === post.$id
+    (record: Models.Document) => record.post.$id === post.$id
   );
 
   useEffect(() => {
@@ -36,11 +37,10 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   const handleLikePost = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    const newLikes = [...likes];
-    const hasLiked = newLikes.includes(userId);
+    let newLikes = [...likes];
 
-    if (hasLiked) {
-      newLikes.filter((id) => id !== userId);
+    if (newLikes.includes(userId)) {
+      newLikes = newLikes.filter((id) => id !== userId);
     } else {
       newLikes.push(userId);
     }
@@ -71,27 +71,31 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
               : "/assets/icons/heart.svg"
           }
           alt="like"
-          width={25}
-          height={25}
-          onClick={handleLikePost}
+          width={20}
+          height={20}
+          onClick={(e) => handleLikePost(e)}
           className="cursor-pointer"
         />
         <p className="small-medium lg:base-medium">{likes.length}</p>
       </div>
 
       <div className="flex gap-3">
-        <img
-          src={
-            isSaved
-              ? "/assets/icons/bookmark-check.svg"
-              : "/assets/icons/bookmark.svg"
-          }
-          alt="like"
-          width={25}
-          height={25}
-          onClick={handleSavePost}
-          className="cursor-pointer"
-        />
+        {isSavingPost || isDeletingSavedPost ? (
+          <Loader color="#04768a" />
+        ) : (
+          <img
+            src={
+              isSaved
+                ? "/assets/icons/bookmark-check.svg"
+                : "/assets/icons/bookmark.svg"
+            }
+            alt="like"
+            width={20}
+            height={20}
+            onClick={(e) => handleSavePost(e)}
+            className="cursor-pointer"
+          />
+        )}
       </div>
     </div>
   );
