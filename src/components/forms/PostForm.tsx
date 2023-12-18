@@ -67,6 +67,25 @@ const PostForm = ({ post }: PostFromProps) => {
       >
         <FormField
           control={form.control}
+          name="file"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="shad-textarea custome-scrollbar">
+                Add Photos
+              </FormLabel>
+              <FormControl>
+                <FileUploader
+                  fileChange={field.onChange}
+                  mediaUrl={post?.imageUrl}
+                />
+              </FormControl>
+              <FormMessage className="shad-form_message" />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="caption"
           render={({ field }) => (
             <FormItem>
@@ -78,25 +97,6 @@ const PostForm = ({ post }: PostFromProps) => {
                   className="shad-input"
                   placeholder="Write a caption..."
                   {...field}
-                />
-              </FormControl>
-              <FormMessage className="shad-form_message" />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="file"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="shad-textarea custome-scrollbar">
-                Add Photos
-              </FormLabel>
-              <FormControl>
-                <FileUploader
-                  fileChange={field.onChange}
-                  mediaUrl={post?.imageUrl}
                 />
               </FormControl>
               <FormMessage className="shad-form_message" />
@@ -139,7 +139,11 @@ const PostForm = ({ post }: PostFromProps) => {
           )}
         />
         <div className="flex gap-4 itmes-center justify-end">
-          <Button type="button" className="shad-button_dark_4" disabled={isLoadingCreate}>
+          <Button
+            type="button"
+            className="shad-button_dark_4"
+            disabled={isLoadingCreate}
+          >
             Cancel
           </Button>
           <Button
