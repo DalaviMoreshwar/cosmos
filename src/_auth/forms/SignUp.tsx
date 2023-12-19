@@ -26,7 +26,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+  const { checkAuthUser } = useUserContext();
 
   const { mutateAsync: createUserAccount, isPending: isCreatingUser } =
     useCreateUserAccount();
@@ -165,9 +165,9 @@ const SignUp = () => {
           <Button
             type="submit"
             className="shad-button_primary"
-            disabled={isCreatingUser}
+            disabled={isCreatingUser && isSigningIn}
           >
-            {isCreatingUser ? (
+            {isCreatingUser && isSigningIn ? (
               <div className="flex-center gap-2">
                 <Spin />
               </div>
