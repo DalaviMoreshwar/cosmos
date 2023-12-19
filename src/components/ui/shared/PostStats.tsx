@@ -62,7 +62,6 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
     }
   };
 
-  if (!isSaved) return <Spin />;
   return (
     <div className="flex justify-between items-center z-20">
       <div className="flex gap-3 mr-5">
