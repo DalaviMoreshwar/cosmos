@@ -8,7 +8,6 @@ import {
 import { Models } from "appwrite";
 import { checkIsLiked } from "@/lib/utils";
 import { Loader } from "lucide-react";
-import Spin from "./Spin";
 
 type PostStatsProps = {
   post?: Models.Document;
