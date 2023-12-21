@@ -1,6 +1,5 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
-import { Button } from "../button";
 
 type FileUploaderProps = {
   fileChange: (FILES: File[]) => void;
@@ -8,17 +7,15 @@ type FileUploaderProps = {
 };
 
 const FileUploader = ({ fileChange, mediaUrl }: FileUploaderProps) => {
-  const [file, setFile] = useState<File[]>([]);
   const [fileUrl, setFileUrl] = useState(mediaUrl);
 
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[]) => {
       // Do something with the files
-      setFile(acceptedFiles);
       fileChange(acceptedFiles);
       setFileUrl(URL.createObjectURL(acceptedFiles[0]));
     },
-    [file]
+    [fileChange]
   );
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -54,7 +51,7 @@ const FileUploader = ({ fileChange, mediaUrl }: FileUploaderProps) => {
           </h3>
           <p className="text-light-4 small-regular mb-6">SVG, PNG, JPG</p>
 
-          <Button className="shad-button_dark_4">Select from system</Button>
+          <p className="shad-button_dark_4 items-center">Select from system</p>
         </div>
       )}
     </div>

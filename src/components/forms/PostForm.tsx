@@ -1,6 +1,8 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Models } from "appwrite";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,10 +16,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import FileUploader from "../ui/shared/FileUploader";
 import { postValidation } from "@/lib/validation";
-import { Models } from "appwrite";
 import { useUserContext } from "@/context/AuthContext";
 import { useToast } from "../ui/use-toast";
-import { useNavigate } from "react-router-dom";
 import {
   useCreatePost,
   useUpdatePost,
@@ -167,6 +167,9 @@ const PostForm = ({ post, action }: PostFromProps) => {
             type="button"
             className="shad-button_dark_4"
             disabled={isLoadingCreate || isLoadingUpdate}
+            onClick={() => {
+              navigate("/")
+            }}
           >
             Cancel
           </Button>
