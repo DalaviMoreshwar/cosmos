@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { ListFilterIcon, SearchIcon } from "lucide-react";
+import {
+  GalleryHorizontalEndIcon,
+  ListFilterIcon,
+  SearchIcon,
+} from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { Input } from "@/components/ui/input";
 import GridPostList from "@/components/ui/shared/GridPostList";
@@ -42,7 +46,10 @@ const Explore = () => {
   return (
     <div className="explore-container">
       <div className="explore-inner_container">
-        <h2 className="h3-bold md:h2-bold w-full">Search Posts</h2>
+        <h2 className="flex items-center gap-2 h3-bold md:h2-bold w-full">
+          <GalleryHorizontalEndIcon />
+          Search Posts
+        </h2>
         <div className="flex items-center gap-1 px-4 w-full rounded-lg bg-dark-4">
           <SearchIcon color="#555" />
           <Input

@@ -3,6 +3,7 @@ import NoDocumentsFound from "@/components/ui/shared/NoDocumentsFound";
 import PostCard from "@/components/ui/shared/PostCard";
 import Spin from "@/components/ui/shared/Spin";
 import { useGetRecentPosts } from "@/lib/react-query/queriesAndMutations";
+import { GalleryVerticalIcon } from "lucide-react";
 
 const Home = () => {
   const {
@@ -19,7 +20,8 @@ const Home = () => {
     <div className="flex flex-1">
       <div className="home-container">
         <div className="home-posts">
-          <h2 className="h3-bold md:h2-bold text-left w-full">
+          <h2 className="flex items-center gap-3 h3-bold md:h2-bold text-left w-full">
+            <GalleryVerticalIcon />
             {posts?.documents && "Feeds"}
           </h2>
           {isPostLoading && !posts ? (
