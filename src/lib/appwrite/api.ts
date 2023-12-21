@@ -332,11 +332,11 @@ export async function deletePost(postId: string, imageId: string) {
 }
 
 // fetch infinite posts functionality
-export async function getInifinitePosts({pageParam}: {pageParam: number}) {
-  const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(10)];
+export async function getInifinitePosts({ pageParam }: { pageParam: number }) {
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(10)];
 
-  if(pageParam){
-    queries.push(Query.cursorAfter(pageParam.toString()))
+  if (pageParam) {
+    queries.push(Query.cursorAfter(pageParam.toString()));
   }
 
   try {
@@ -344,11 +344,11 @@ export async function getInifinitePosts({pageParam}: {pageParam: number}) {
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
       queries
-    )
+    );
 
-    if(!posts) throw Error;
+    if (!posts) throw Error;
 
-    return posts;    
+    return posts;
   } catch (error) {
     console.log(error);
   }
@@ -356,18 +356,33 @@ export async function getInifinitePosts({pageParam}: {pageParam: number}) {
 
 // search for posts
 export async function searchPosts(searchTerm: string) {
-  
-
   try {
     const posts = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
-      [Query.search('caption', searchTerm)]
-    )
+      [Query.search("caption", searchTerm)]
+    );
 
-    if(!posts) throw Error;
+    if (!posts) throw Error;
 
-    return posts;    
+    return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// fetch saved posts
+export async function getSavedPosts() {
+  try {
+    const savedPosts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.savesCollectionId,
+      [Query.orderDesc("$createdAt")]
+    );
+
+    if(!savedPosts) throw Error;
+
+    return savedPosts;
   } catch (error) {
     console.log(error);
   }

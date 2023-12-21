@@ -1,8 +1,8 @@
+import { Models } from "appwrite";
+import NoDocumentsFound from "@/components/ui/shared/NoDocumentsFound";
 import PostCard from "@/components/ui/shared/PostCard";
 import Spin from "@/components/ui/shared/Spin";
 import { useGetRecentPosts } from "@/lib/react-query/queriesAndMutations";
-import { Models } from "appwrite";
-import { Bird } from "lucide-react";
 
 const Home = () => {
   const {
@@ -13,17 +13,7 @@ const Home = () => {
 
   if (isError) return;
 
-  if (posts?.documents.length === 0)
-    return (
-      <>
-        <div className="home-container">
-          <h2 className="flex flex-col items-center text-light-4 my-auto md:h2-bold h-40 text-center w-full">
-            <Bird size="100" strokeWidth={1} />
-            No documents
-          </h2>
-        </div>
-      </>
-    );
+  if (posts?.documents.length === 0) return <NoDocumentsFound />;
 
   return (
     <div className="flex flex-1">
