@@ -9,9 +9,10 @@ const Saved = () => {
   const { user } = useUserContext();
   const { data, isFetching } = useGetSavedPosts();
 
-  const savedPosts = data?.documents
-    .filter((post) => post?.user?.$id === user.id)
-    .map((item) => item.post);
+  const savedPosts =
+    data?.documents
+      .filter((post) => post?.user?.$id === user.id)
+      .map((item) => item.post) || [];
 
   if (savedPosts?.length === 0 && isFetching === false)
     return <NoDocumentsFound />;
