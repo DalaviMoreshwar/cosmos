@@ -14,6 +14,7 @@ import {
   getPostById,
   getRecentPosts,
   getSavedPosts,
+  getUsers,
   likePost,
   savePost,
   searchPosts,
@@ -209,5 +210,13 @@ export const useGetSavedPosts = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
     queryFn: getSavedPosts,
+  })
+}
+
+// get all users
+export const useGetUsers = (limit?: number) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USERS],
+    queryFn: ()=> getUsers(limit || 10)
   })
 }

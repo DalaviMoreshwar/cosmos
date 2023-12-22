@@ -33,7 +33,7 @@ const PostDetails = () => {
                     "/assets/icons/profile-placeholder.svg"
                   }
                   alt="creator"
-                  className="w-8 h-8 lg:w-12 lg:h-12 rounded-full"
+                  className="w-12 h-12 lg:w-12 lg:h-12 rounded-full"
                 />
               </Link>
 
