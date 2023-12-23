@@ -21,8 +21,12 @@ const Home = () => {
       <div className="home-container">
         <div className="home-posts">
           <h2 className="flex items-center gap-3 h3-bold md:h2-bold text-left w-full">
-            <GalleryVerticalIcon />
-            {posts?.documents && "Feeds"}
+            {posts?.documents && (
+              <>
+                <GalleryVerticalIcon />
+                <div>Feeds</div>
+              </>
+            )}
           </h2>
           {isPostLoading && !posts ? (
             <Spin />
